@@ -1,6 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://xrsnfqielfdywwljemik.supabase.co';
+const supabaseKey = 'PASTE_YOUR_WORKING_KEY_HERE';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 import { Search, ShoppingBag, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
