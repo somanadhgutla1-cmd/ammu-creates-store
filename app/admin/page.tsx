@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { PlusCircle, Trash2, ArrowLeft, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 
@@ -22,15 +22,29 @@ export default function AdminPortal() {
   }, []);
 
   async function fetchData() {
-    const { data: catData } = await supabase.from('categories').select('*');
-    if (catData) setCategories(catData);
-
-    const { data: prodData } = await supabase.from('products').select('*');
-    if (prodData) setProducts(prodData);
-
-    setLoading(false);
+  const { data: catData } = await supabase.from('categories').select('*');
+  
+  if (catData && catData.length > 0) {
+    setCategories(catData);
+  } else {
+    // Fallback categories so dropdown populates immediately
+    setCategories([
+      { id: 1, name: 'Bangles' },
+      { id: 2, name: 'Earrings' },
+      { id: 3, name: 'Hair Pins' },
+      { id: 4, name: 'Ear Side Chains' },
+      { id: 15, name: 'Jhumkas' },
+      { id: 17, name: 'Pins' },
+      { id: 18, name: 'Necklaces' },
+      { id: 19, name: 'Combos' },
+    ]);
   }
 
+  const { data: prodData } = await supabase.from('products').select('*');
+  if (prodData) setProducts(prodData);
+
+  setLoading(false);
+}
   async function handleAddProduct(e: React.FormEvent) {
     e.preventDefault();
     if (!name || !price || !categoryId) return alert('Please fill in required fields');
