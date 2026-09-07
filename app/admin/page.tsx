@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://xrsnfqielfdywwljemik.supabase.co';
-const supabaseAnonKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhyc25mcWllbGZkeXd3bGplbWlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2MDg6MDQ0MDA3M30.BglAXrOH4aQ78IBr_OTP5LpJSmXrSU8BLeP_SizoHQ4';
+const supabaseKey =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhyc25mcWllbGZkeXd3bGplbWlrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4ODYwNDA3NCwiZXhwIjoyMTA0MTgwMDc0fQ.beaFsu8iYC7w0DMitPQ-ez0dgkP5G1IuVut1hT5CoTQ';
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 import { PlusCircle, Trash2, ArrowLeft, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 
