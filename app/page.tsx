@@ -271,7 +271,7 @@ export default function Home() {
                     </span>
                   </div>
                   <a
-                    href={`https://wa.me/919876543210?text=${encodeURIComponent(
+                    href={`https://wa.me/917330789207?text=${encodeURIComponent(
                       `Hi Ammu Creates! I would like to order: *${item.name}* (Price: ₹${item.price})`
                     )}`}
                     target="_blank"
