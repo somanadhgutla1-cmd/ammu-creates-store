@@ -33,21 +33,39 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    async function fetchData() {
-      const { data: catData } = await supabase.from('categories').select('*');
-      if (catData) setCategories(catData);
-
-      const { data: prodData } = await supabase.from('products').select('*');
-      if (prodData) {
-        setProducts(prodData);
-        setFilteredProducts(prodData);
-      }
-
-      setLoading(false);
+  async function fetchData() {
+    // 1. Fetch Categories
+    const { data: catData } = await supabase.from('categories').select('*');
+    if (catData && catData.length > 0) {
+      setCategories(catData);
+    } else {
+      // Fallback categories if database return is empty
+      setCategories([
+        { id: 1, name: 'Bangles', slug: 'bangles' },
+        { id: 2, name: 'Earrings', slug: 'earrings' },
+        { id: 3, name: 'Hair Pins', slug: 'hair-pins' },
+        { id: 4, name: 'Ear Side Chains', slug: 'ear-side-chains' },
+        { id: 15, name: 'Jhumkas', slug: 'jhumkas' },
+        { id: 17, name: 'Pins', slug: 'pins' },
+        { id: 18, name: 'Necklaces', slug: 'necklaces' },
+        { id: 19, name: 'Combos', slug: 'combos' },
+      ]);
     }
-    fetchData();
-  }, []);
 
+    // 2. Fetch Products
+    const { data: prodData, error } = await supabase.from('products').select('*');
+    if (prodData) {
+      setProducts(prodData);
+      setFilteredProducts(prodData);
+    }
+    if (error) {
+      console.error('Error fetching products:', error);
+    }
+
+    setLoading(false);
+  }
+  fetchData();
+}, []);
   // Filter products by search term and selected category
   useEffect(() => {
     let result = products;
