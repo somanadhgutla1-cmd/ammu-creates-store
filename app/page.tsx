@@ -1,13 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = 'https://xrsnfqielfdywwljemik.supabase.co';
-const supabaseKey = 'PASTE_YOUR_WORKING_KEY_HERE';
-
-const supabase = createClient(supabaseUrl, supabaseKey);
 import { Search, ShoppingBag, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+
+const supabaseUrl = 'https://xrsnfqielfdywwljemik.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhyc25mcWllbGZkeXd3bGplbWlrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4ODYwNDA3NCwiZXhwIjoyMTA0MTgwMDc0fQ.beaFsu8iYC7w0DMitPQ-ez0dgkP5G1IuVut1hT5CoTQ';
+
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default function Home() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -68,26 +68,28 @@ export default function Home() {
 }, []);
   // Filter products by search term and selected category
   useEffect(() => {
-    let result = products;
+  let result = products;
 
-    if (selectedCategory !== 'all') {
-      const catObj = categories.find((c) => c.slug === selectedCategory);
-      if (catObj) {
-        result = result.filter((p) => p.category_id === catObj.id);
-      }
+  if (selectedCategory !== 'all') {
+    const catObj = categories.find(
+      (c) => c.slug === selectedCategory || c.name?.toLowerCase() === selectedCategory.toLowerCase()
+    );
+    if (catObj) {
+      // Loose comparison (==) matches string IDs with numeric IDs
+      result = result.filter((p) => p.category_id == catObj.id);
     }
+  }
 
-    if (searchQuery.trim() !== '') {
-      result = result.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.description?.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
+  if (searchQuery.trim() !== '') {
+    result = result.filter(
+      (p) =>
+        p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
 
-    setFilteredProducts(result);
-  }, [selectedCategory, searchQuery, products, categories]);
-
+  setFilteredProducts(result);
+}, [selectedCategory, searchQuery, products, categories]);
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-amber-50/30">
@@ -269,7 +271,7 @@ export default function Home() {
                     </span>
                   </div>
                   <a
-                    href={`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(
+                    href={`https://wa.me/919876543210?text=${encodeURIComponent(
                       `Hi Ammu Creates! I would like to order: *${item.name}* (Price: ₹${item.price})`
                     )}`}
                     target="_blank"
