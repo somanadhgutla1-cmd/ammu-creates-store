@@ -103,8 +103,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       {/* Top Banner */}
-      <div className="bg-amber-900 text-amber-100 text-xs py-2 text-center font-medium tracking-wide">
-        ✨ Free Domestic Shipping on Orders Above ₹1,999 | Fast WhatsApp Support
+      <div className="bg-amber-900 text-amber-100 text-xs py-2 text-center font-medium tracking-wide px-4">
+        ✨ Free Domestic Shipping on Orders Above ₹1,999 | 💳 Google Pay, PhonePe & Paytm Accepted
       </div>
 
       {/* Navigation Header */}
@@ -295,6 +295,15 @@ export default function Home() {
         <p className="text-xs text-gray-400 mt-1.5">
           Available in Hyderabad • Nalgonda • Suryapet
         </p>
+
+        {/* Payment Badges */}
+        <div className="flex items-center justify-center gap-2 mt-3 text-[11px] font-semibold text-slate-600">
+          <span className="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Google Pay</span>
+          <span className="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">PhonePe</span>
+          <span className="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Paytm</span>
+          <span className="bg-slate-100 px-2.5 py-1 rounded border border-slate-200">Bank Transfer</span>
+        </div>
+
         <p className="text-xs text-gray-400 mt-4">
           © 2026 Aura Jewels. All rights reserved. Powered by Next.js &
           Supabase.
