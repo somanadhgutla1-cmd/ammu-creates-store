@@ -272,7 +272,7 @@ export default function Home() {
                   </div>
                   <a
                     href={`https://wa.me/917330789207?text=${encodeURIComponent(
-                      `Hi Ammu Creates! I would like to order: *${item.name}* (Price: ₹${item.price})`
+                      `Hi Ammu Creates! I would like to order: *${item.name}* (Price: ₹${item.price}). Please share UPI/GPay details for payment.`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
